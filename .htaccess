@@ -1,0 +1,27 @@
+# START MultiPHP Version
+<FilesMatch "\.(php4|php5|php3|php2|php|phtml)$">
+    SetHandler application/x-httpd-alt-php82___lsphp
+</FilesMatch>
+# END MultiPHP Version
+
+RewriteOptions inherit
+<IfModule mod_rewrite.c>
+	Options -Indexes
+
+	RewriteEngine On
+	RewriteCond $1 !^(index\\.php|resources|robots\\.txt)
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.+)$ index.php?/$1 [L,QSA]
+</IfModule>
+
+<Files 403.shtml>
+order allow,deny
+allow from all
+</Files>
+
+deny from 103.28.116.36
+deny from 66.249.77.100
+deny from 52.167.144.137
+deny from 15.235.184.71
+deny from 114.10.157.129
